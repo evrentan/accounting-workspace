@@ -1,5 +1,5 @@
 # Accounting Workspace
-A Sample Accounting Workspace Project with Spring Boot 3.0.6, JDK 17 & Maven.
+A Sample Accounting Workspace Project with Spring Boot 3.0.6, JDK 17 & Maven that is implemented with Microservices Architecture.
 
 Services are developed in the following modules:
 * **Accounting Manager** - Accounting Manager Service in order to manage accounting related functionalities.
