@@ -4,6 +4,7 @@ import evrentan.accounting.accountingmanager.entity.AccountingEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -14,4 +15,5 @@ import java.util.UUID;
  */
 @Repository
 public interface AccountingRepository extends JpaRepository<AccountingEntity, UUID> {
+    List<AccountingEntity> findAllByEmailAndActive(String email, Boolean isActive);
 }

@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.UUID;
 
 /**
- * CreateAccountingResponse Class.
+ * CreateAccountingItemResponse Class.
  *
  * @author <a href="https://github.com/evrentan">Evren Tan</a>
  * @since 1.0.0
@@ -17,8 +17,8 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode @ToString
 @Builder
-@Schema(description = "CreateAccountingResponse Class")
-public class CreateAccountingResponse {
+@Schema(description = "CreateAccountingItemResponse Class")
+public class CreateAccountingItemResponse {
     /**
      * Accounting ID in UUID Type.
      * It will be filled if accounting is created successfully.

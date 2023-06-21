@@ -35,7 +35,7 @@ public class AccountingMapper {
                 .amount(accounting.getAmount())
                 .productName(accounting.getProductName())
                 .billNo(accounting.getBillNo())
-                .isActive(accounting.isActive())
+                .active(accounting.isActive())
                 .billDate(accounting.getBillDate())
                 .build();
     }

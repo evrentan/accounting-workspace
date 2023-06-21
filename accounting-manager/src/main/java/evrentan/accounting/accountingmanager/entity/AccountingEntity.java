@@ -107,7 +107,7 @@ public class AccountingEntity {
      */
     @Basic
     @Column(name = "is_active")
-    private boolean isActive;
+    private boolean active;
 
     /**
      * Bill Date in LocalDateTime Type.

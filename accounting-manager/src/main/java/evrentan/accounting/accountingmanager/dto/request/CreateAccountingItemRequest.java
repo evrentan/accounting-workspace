@@ -6,7 +6,7 @@ import lombok.*;
 import java.math.BigDecimal;
 
 /**
- * CreateAccountingRequest Class.
+ * CreateAccountingItemRequest Class.
  *
  * @author <a href="https://github.com/evrentan">Evren Tan</a>
  * @since 1.0.0
@@ -17,8 +17,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode @ToString
 @Builder
-@Schema(description = "CreateAccountingRequest Class")
-public class CreateAccountingRequest {
+@Schema(description = "CreateAccountingItemRequest Class")
+public class CreateAccountingItemRequest {
     /**
      * First Name of the Accountant in String Type.
      *
