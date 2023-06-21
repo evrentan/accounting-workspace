@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "29ba1eb0-cb1c-4112-98c8-717c4b207a0c",
+		"name": "Accounting Workspace",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3822332"
+	},
+	"item": [
+		{
+			"name": "API Gateway",
+			"item": [
+				{
+					"name": "Actuator",
+					"item": [
+						{
+							"name": "Actuator End-Points",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8833/actuator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8833",
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:6969/actuator/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6969",
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:6969/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6969",
+									"path": [
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Service Discovery",
+			"item": [
+				{
+					"name": "Actuator",
+					"item": [
+						{
+							"name": "Actuator End-Points",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:6969/actuator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6969",
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8833/actuator/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8833",
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8833/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8833",
+									"path": [
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
