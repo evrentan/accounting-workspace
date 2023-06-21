@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Import;
 @Import(
         value = {
                 ServiceDiscoveryServerConfig.class
-        })
+        }
+)
 public class ServiceDiscoveryApplication {
 
     public static void main(String[] args) {
