@@ -34,7 +34,7 @@ For building and running the application belows are required;
 - [PostgreSQL][postgresql-version]
 - [Flyway Migration][flyway-migration]
 - Eureka Client
-- Spring Cloud Config Server
+- Spring Cloud API Gateway
 - Spring Boot Actuator
 
 ## Version Control Standards
@@ -48,6 +48,24 @@ Below version control standards should be followed within the project;
 - While creating a PR "[Feature]: ", "[Bug]: " or "[Doc]: " prefix should be used to identify the PR type.
 - PRs should be linked with a valid issue in the [Accounting Workspace GitHub Repository Project][accounting-workspace-github].
 - If validations are passed in the [staging branch][staging-branch-github-link], then a merge branch request is created with "merge branch" label & a linked PR to the [main branch][main-branch-github-link].
+
+## How to Run the Project
+You need to follow below steps in order to run the project. 
+You can build docker images and then run them as docker containers or you can run the services directly via your IDE like JetBrains' [IntelliJ IDEA][jetbrains-intellij-idea].
+
+1. Start your Postgres Database. You can directly use postgres docker image to run your DB.
+```shell
+docker pull postgres
+docker run --name accounting-workspace-db -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -d -p 5432:5432 postgres
+```
+2. Then, you need to create accounting-manager-db and accounting-manager schema within this DB. 
+3. As accounting-manager service uses [Flyway DB Migration][flyway-db-migration], all related DDLs and DMLs will be created automatically when the service is booted.
+4. Then, start below services in the given order;
+   - Service Discovery
+   - API Gateway
+   - Accounting Manager
+5. Then, check the [Postman Collection][postman-collection-file] file and you can use the APIs within the Accounting Manager folder.
+
 
 ## Postman Collection
 
@@ -69,3 +87,5 @@ Please check the [LICENSE](LICENSE) file for more details.
 [staging-branch-github-link]: https://github.com/evrentan/accounting-workspace/tree/staging
 [main-branch-github-link]: https://github.com/evrentan/accounting-workspace/tree/main
 [postman-collection-file]: postman-collection/AccountingWorkspacePostmanCollection.json
+[jetbrains-intellij-idea]: https://www.jetbrains.com/idea/
+[flyway-db-migration]: https://flywaydb.org/
