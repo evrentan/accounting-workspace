@@ -66,9 +66,9 @@ Local & development configuration properties are stored under [Service Discovery
 Application can be run in Docker. [Dockerfile](Dockerfile) in the project root folder is the configuration file for Docker build.
 
 ```shell
-mvn clean install
-docker build -t service-discovery:1.0.0 .
-docker run -p 6969:6969 --name AccountingServiceDiscoveryService service-discovery:1.0.0
+mvn clean package
+docker build -t service-discovery .
+docker run -p 6969:6969 --name AccountingServiceDiscoveryService service-discovery
 ```
 
 ## Run Actuator
