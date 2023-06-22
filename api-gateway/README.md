@@ -68,9 +68,9 @@ Local & development configuration properties are stored under [API Gateway Confi
 Application can be run in Docker. [Dockerfile](Dockerfile) in the project root folder is the configuration file for Docker build.
 
 ```shell
-mvn clean install
-docker build -t config-server:1.0.0 .
-docker run -p 8833:8833 --name AccountingApiGatewayApplication api-gateway:1.0.0
+mvn clean package
+docker build -t api-gateway .
+docker run -p 8833:8833 --name AccountingApiGatewayApplication api-gateway
 ```
 
 ## Run Actuator
