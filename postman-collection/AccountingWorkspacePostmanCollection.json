@@ -143,6 +143,139 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Accounting Manager",
+			"item": [
+				{
+					"name": "Actuator",
+					"item": [
+						{
+							"name": "Actuator End-Points",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8833/accounting-manager/actuator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8833",
+									"path": [
+										"accounting-manager",
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8833/accounting-manager/actuator/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8833",
+									"path": [
+										"accounting-manager",
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8833/accounting-manager/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8833",
+									"path": [
+										"accounting-manager",
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Business Logic",
+					"item": [
+						{
+							"name": "Get All Accounting Items",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8833/accounting-manager/accounting",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8833",
+									"path": [
+										"accounting-manager",
+										"accounting"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Accounting Item",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Evren\",\n    \"lastName\": \"Tan\",\n    \"email\": \"hello@evrentan.com\",\n    \"amount\": 100,\n    \"productName\": \"Product3\",\n    \"billNo\": \"Bill3\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8833/accounting-manager/accounting",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8833",
+									"path": [
+										"accounting-manager",
+										"accounting"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	]
 }
