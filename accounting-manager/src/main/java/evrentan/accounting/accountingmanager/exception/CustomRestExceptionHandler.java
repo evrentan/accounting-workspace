@@ -37,7 +37,6 @@ public class CustomRestExceptionHandler {
                 .build();
 
         return responseEntity(customRestError);
-
     }
 
     /**

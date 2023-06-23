@@ -35,20 +35,58 @@ public class AccountingServiceImpl implements AccountingService {
      *
      * @param createAccountingItemRequest accounting item to be created. Please, see the {@link CreateAccountingItemRequest} class for details.
      * @return CreateAccountingItemResponse which corresponds to the accounting item created. Please, see the {@link CreateAccountingItemResponse} class for details.
+     *
      * @author <a href="https://github.com/evrentan">Evren Tan</a>
      * @since 1.0.0
      */
     @Override
     public CreateAccountingItemResponse createAccountingItem(CreateAccountingItemRequest createAccountingItemRequest) {
-        BigDecimal totalExistingAccountantAmount = this.accountingRepository.findAllByEmailAndActive(createAccountingItemRequest.getEmail(), Boolean.TRUE)
+        final BigDecimal totalExistingAccountantAmount = calculateExistingAccountantAmount(createAccountingItemRequest.getEmail());
+
+        this.checkAccountantAllowedAmountExceeded(createAccountingItemRequest.getAmount(), totalExistingAccountantAmount);
+
+        return this.generateCreateAccountingItemResponse(createAccountingItemRequest);
+    }
+
+    /**
+     * Calculate existing amount of the related accountant.
+     *
+     * @param email email of the accountant.
+     * @return BigDecimal which is the total existing amount of the related accountant calculated according to the accountant active accounting items.
+     *
+     * @author <a href="https://github.com/evrentan">Evren Tan</a>
+     * @since 1.0.0
+     */
+    private BigDecimal calculateExistingAccountantAmount(final String email) {
+        return this.accountingRepository.findAllByEmailAndActive(email, Boolean.TRUE)
                 .stream()
                 .map(AccountingEntity::getAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
-        if (createAccountingItemRequest.getAmount().add(totalExistingAccountantAmount).compareTo(BigDecimal.valueOf(accountantLimit)) > 0)
+    /**
+     * Check whether accountant allowed amount is exceeded or not.
+     *
+     * @param requestedAmount amount that is requested in the API call.
+     * @param totalExistingAccountantAmount amount that is the existing total amount of the accountant which is calculated according to the accountant active accounting items.
+     *
+     * @author <a href="https://github.com/evrentan">Evren Tan</a>
+     * @since 1.0.0
+     */
+    private void checkAccountantAllowedAmountExceeded(BigDecimal requestedAmount, BigDecimal totalExistingAccountantAmount) {
+        if (requestedAmount.add(totalExistingAccountantAmount).compareTo(BigDecimal.valueOf(accountantLimit)) > 0)
             throw new BadRequestException(Constants.ACCOUNTANT_LIMIT_EXCEEDED);
+    }
 
-        AccountingEntity accountingEntity = this.accountingRepository.save(CreatAccountingItemRequestMapper.toEntity(createAccountingItemRequest));
+    /**
+     * Generate CreateAccountingItemResponse object after saving the requested accounting item to the DB.
+     *
+     * @param createAccountingItemRequest object that is requested accounting item to the DB. Please check {@link CreateAccountingItemRequest}.
+     * @return CreateAccountingItemResponse object that is generated for the response for creating the accounting item to the DB. Please check {@link CreateAccountingItemResponse}.
+     */
+    private CreateAccountingItemResponse generateCreateAccountingItemResponse(CreateAccountingItemRequest createAccountingItemRequest) {
+        final AccountingEntity accountingEntity = this.accountingRepository.save(CreatAccountingItemRequestMapper.toEntity(createAccountingItemRequest));
+
         CreateAccountingItemResponse createAccountingItemResponse = new CreateAccountingItemResponse();
         createAccountingItemResponse.setId(accountingEntity.getId());
 
