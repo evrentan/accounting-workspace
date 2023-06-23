@@ -49,6 +49,26 @@ public class AccountingServiceImpl implements AccountingService {
     }
 
     /**
+     * Return all accounting items in the database
+     *
+     * @return List<Event>. Please, see the {@link Accounting} class for details.
+     *
+     * @author <a href="https://github.com/evrentan">Evren Tan</a>
+     * @since 1.0.0
+     */
+    @Override
+    public GetAccountingListResponse getAllAccountingItems() {
+        List<Accounting> accountingList = AccountingMapper.toDtoList(this.accountingRepository.findAll());
+
+        if (accountingList.isEmpty())
+            throw new NotFoundException(Constants.NO_ACCOUNTING_ITEM_FOUND);
+
+        GetAccountingListResponse getAccountingListResponse = new GetAccountingListResponse();
+        getAccountingListResponse.setAccountingList(accountingList);
+        return getAccountingListResponse;
+    }
+
+    /**
      * Calculate existing amount of the related accountant.
      *
      * @param email email of the accountant.
@@ -83,6 +103,9 @@ public class AccountingServiceImpl implements AccountingService {
      *
      * @param createAccountingItemRequest object that is requested accounting item to the DB. Please check {@link CreateAccountingItemRequest}.
      * @return CreateAccountingItemResponse object that is generated for the response for creating the accounting item to the DB. Please check {@link CreateAccountingItemResponse}.
+     *
+     * @author <a href="https://github.com/evrentan">Evren Tan</a>
+     * @since 1.0.0
      */
     private CreateAccountingItemResponse generateCreateAccountingItemResponse(CreateAccountingItemRequest createAccountingItemRequest) {
         final AccountingEntity accountingEntity = this.accountingRepository.save(CreatAccountingItemRequestMapper.toEntity(createAccountingItemRequest));
@@ -91,24 +114,5 @@ public class AccountingServiceImpl implements AccountingService {
         createAccountingItemResponse.setId(accountingEntity.getId());
 
         return createAccountingItemResponse;
-    }
-
-    /**
-     * Return all accounting items in the database
-     *
-     * @return List<Event>. Please, see the {@link Accounting} class for details.
-     * @author <a href="https://github.com/evrentan">Evren Tan</a>
-     * @since 1.0.0
-     */
-    @Override
-    public GetAccountingListResponse getAllAccountingItems() {
-        List<Accounting> accountingList = AccountingMapper.toDtoList(this.accountingRepository.findAll());
-
-        if (accountingList.isEmpty())
-            throw new NotFoundException(Constants.NO_ACCOUNTING_ITEM_FOUND);
-
-        GetAccountingListResponse getAccountingListResponse = new GetAccountingListResponse();
-        getAccountingListResponse.setAccountingList(accountingList);
-        return getAccountingListResponse;
     }
 }
