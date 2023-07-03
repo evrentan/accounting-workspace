@@ -29,6 +29,16 @@ public class AccountingController {
         this.accountingService = accountingService;
     }
 
+    /**
+     * REST end-point in order to create an accounting item.
+     * Details related to API specs can be found in the API Documentation which can be reached as described in README file.
+     *
+     * @param createAccountingItemRequest object that is going to be created. Please, see the {@link CreateAccountingItemRequest} class for details.
+     * @return CreateAccountingItemResponse Object within ResponseEntity. Please, see the {@link CreateAccountingItemResponse} & {@link ResponseEntity} classes for details.
+     *
+     * @author <a href="https://github.com/evrentan">Evren Tan</a>
+     * @since 1.0.0
+     */
     @PostMapping
     @Operation(summary = "Create Accounting Item")
     @ApiResponses(value = {
@@ -42,6 +52,15 @@ public class AccountingController {
         return ResponseEntity.created(URI.create(createAccountingItemResponse.getId().toString())).body(createAccountingItemResponse);
     }
 
+    /**
+     * REST end-point in order to get all accounting items.
+     * Details related to API specs can be found in the API Documentation which can be reached as described in README file.
+     *
+     * @return GetAccountingListResponse Object within ResponseEntity. Please, see the {@link GetAccountingListResponse} & {@link ResponseEntity} classes for details.
+     *
+     * @author <a href="https://github.com/evrentan">Evren Tan</a>
+     * @since 1.0.0
+     */
     @GetMapping
     @Operation(summary = "Get All Accounting Items")
     @ApiResponses(value = {
