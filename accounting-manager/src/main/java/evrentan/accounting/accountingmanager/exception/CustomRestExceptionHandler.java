@@ -40,7 +40,7 @@ public class CustomRestExceptionHandler {
     }
 
     /**
-     * indicates that such a page does not exist on the server or that there is an error in the page path
+     * Indicates that such a page does not exist on the server or that there is an error in the page path
      *
      * @param exception Bad Request Exception
      * @param httpServletRequest   Web request
@@ -61,7 +61,7 @@ public class CustomRestExceptionHandler {
     }
 
     /**
-     * indicates that there is a situation that is not going well on the server
+     * Indicates that there is a situation that is not going well on the server
      *
      * @param exception Bad Request Exception
      * @param httpServletRequest   Web request
@@ -81,6 +81,15 @@ public class CustomRestExceptionHandler {
         return responseEntity(customRestError);
     }
 
+    /**
+     * Create the response entity with CustomError object.
+     *
+     * @param customRestError object that includes error status and message. Please, see the {@link CustomError} class for details.
+     * @return CustomError object within ResponseEntity. Please, see the {@link CustomError} & {@link ResponseEntity} classes for details.
+     *
+     * @author <a href="https://github.com/evrentan">Evren Tan</a>
+     * @since 1.0.0
+     */
     private static ResponseEntity<CustomError> responseEntity(CustomError customRestError){
         return ResponseEntity.status(HttpStatus.valueOf(customRestError.getStatus()))
                 .body(customRestError);
